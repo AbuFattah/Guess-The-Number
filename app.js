@@ -41,8 +41,8 @@ gameForm.addEventListener('submit',function(e){
   else{
       //Win case
   if(guess === winningNum){
-    guessInput.disabled = true;
-    /* guessInput.borderColor = 'green'; */
+  /*   guessInput.disabled = true;
+    
     guessInput.classList.add('border-success');
     guessBtn.classList.add('border-success');
     setMsg(`YOU WIN, ${winningNum} is correct!`,'green');
@@ -51,23 +51,26 @@ gameForm.addEventListener('submit',function(e){
     // reload function after game over
     guessBtn.addEventListener('click',function(){
       window.location.reload('Refresh');
-    });
+    }); */
+    gameOver(true,`YOU WIN, ${winningNum} is correct!`);
   }
   else{
     guessesLeft -=1;
     console.log(guessesLeft);
     setMsg(`You have ${guessesLeft} guesses left.`,blue);
-
+    
+    //LOSE CASE
     if(guessesLeft === 0){
-      guessInput.disabled = true;
+     /*  guessInput.disabled = true;
       guessInput.classList.add('border-danger');
       guessBtn.classList.add('border-danger');
-      setMsg(` It was ${winningNum}, You lost!!`,'red');
-
+      setMsg(`It was ${winningNum}, You lost!!`,'red');
       guessBtn.value = 'Play Again'
       guessBtn.addEventListener('click',function(){
         window.location.reload('Refresh');
-      });
+      }); */
+
+      gameOver(false,`It was ${winningNum}, You lost!!`);
     }
   }
   }
@@ -88,11 +91,29 @@ function getRandomInt(min,max){
 }
 
 
+// Game over function
+function gameOver(hasWon,message){
+  guessInput.disabled = true;
+  /* guessInput.borderColor = 'green'; */
+  let color;
+  if(hasWon === true){
+    guessInput.classList.add('border-success');
+    guessBtn.classList.add('border-success');
+    color = 'green';
+    setMsg(message,color);
+  }
+  else{
+    guessInput.classList.add('border-danger');
+    guessBtn.classList.add('border-danger');
+    color = 'red';
+    setMsg(message,color);
+  }
+  
+  // changing value to Play again
+  guessBtn.value = 'Play Again'
+  // reload function after game over
+  guessBtn.addEventListener('click',function(){
+    window.location.reload('Refresh');
+  });
 
-
-
-
-
-
-
-
+}
