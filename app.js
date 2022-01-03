@@ -100,6 +100,7 @@ function gameOver(hasWon, message) {
     color = "red";
     setMsg(message, color);
   }
+<<<<<<< HEAD
 
   // changing value to Play again
   guessBtn.value = "Play Again";
@@ -107,4 +108,15 @@ function gameOver(hasWon, message) {
   guessBtn.addEventListener("click", function () {
     window.location.reload("Refresh");
   });
+=======
+
+  // changing value to Play again
+  guessBtn.value = "Play Again";
+  // reload function after game over
+  guessBtn.addEventListener("click", function () {
+    window.location.reload("Refresh");
+  });
+
+  //devfattah changed it
+>>>>>>> 0c6ba610412ab0e978b0190221f976f4019e22a8
 }
